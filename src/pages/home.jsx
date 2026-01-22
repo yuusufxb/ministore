@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 export function Home(){
+    {/* fetching and loading data */}
     const [loading,setloading]=useState(false);
     const [products,setproducts]=useState([]);
     
@@ -14,8 +15,11 @@ export function Home(){
         }
         fetchproducts();
     },[])
-    
-    
+    {/* search bar */}
+    const [searching,setsearching]=useState("");
+    const filtredproducts = products.filter((pro)=>
+                                pro.title.toLowerCase().includes(searching.toLowerCase()));
+    console.log(filtredproducts);
     
     return(
         <div className="container my-4">
@@ -49,9 +53,15 @@ export function Home(){
     <div>
         <h1 className="mb-4 text-center">MiniStore</h1>
         {loading && <p className="text-center">Loading content ...</p>}
-
+         <input 
+         type="text" 
+         placeholder="Search"
+         className="form-control form-control-lg mb-3"
+         value={searching}
+         onChange={(s)=>setsearching(s.target.value)}
+         />   
         <div className="row">
-            {products.map((pro, index) => (
+            {filtredproducts.map((pro, index) => (
                 <div key={index} className="col-md-4 mb-4">
                     <div className="card h-100">
                         <img src={pro.images[0]} className="card-img-top" alt={pro.title} />
@@ -65,6 +75,13 @@ export function Home(){
             ))}
         </div>
     </div>
+    {/* Footer */}
+    <footer className="bg-secondary text-white py-4 mt-5">
+    <div className="container text-center">
+        <p className="mb-1">&copy; {new Date().getFullYear()} MiniStore. All rights reserved.</p>
+        <p className="mb-1">Your one-stop shop for the coolest products!</p>
+    </div>
+</footer>
 </div>
 
     );
