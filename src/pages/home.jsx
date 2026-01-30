@@ -1,6 +1,12 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-export function Home(){
+import { Card } from "./card";
+import './style/home.css';
+export function Home({cart,setcard}){
+    {/*add to card function*/}
+    const addtocart=(pro)=>{
+        setcard((prev)=>[...prev,pro]);
+    }
     {/* fetching and loading data */}
     const [loading,setloading]=useState(false);
     const [products,setproducts]=useState([]);
@@ -19,71 +25,50 @@ export function Home(){
     const [searching,setsearching]=useState("");
     const filtredproducts = products.filter((pro)=>
                                 pro.title.toLowerCase().includes(searching.toLowerCase()));
-    console.log(filtredproducts);
-    
     return(
-        <div className="container my-4">
-    {/* Navigation Bar */}
-    <nav className="navbar navbar-expand-lg navbar-dark bg-secondary mb-4 rounded">
-    <div className="container-fluid">
-        <h1 className="navbar-brand fs-2 m-0">
-            MiniStore
-        </h1>
-        <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-            <span className="navbar-toggler-icon"></span>
+        <div id="container">
+  {/* Navigation */}
+  <nav id="navbar">
+    <h1 id="brand">MiniStore</h1>
+
+    <ul id="nav-links">
+      <li><Link to="/profile">Profile</Link></li>
+      <li><Link to="/card">Card</Link></li>
+      <li><Link to="/contact">Contact</Link></li>
+    </ul>
+  </nav>
+
+  {/* Main content */}
+  <h1 id="title">MiniStore</h1>
+
+  <input
+    type="text"
+    id="search"
+    placeholder="Search"
+    value={searching}
+    onChange={(e) => setsearching(e.target.value)}
+  />
+
+  {loading && <p id="loading">Loading content...</p>}
+
+  <div id="products">
+    {filtredproducts.map((pro) => (
+      <div key={pro.id} id="product-card">
+        <img src={pro.images[0]} alt={pro.title} id="product-img" />
+        <h3 id="product-title">{pro.title}</h3>
+        <p id="product-price">${pro.price}</p>
+        <button id="add-btn" onClick={() => addtocart(pro)}>
+          Add to cart
         </button>
-        <div className="collapse navbar-collapse" id="navbarNav">
-            <ul className="navbar-nav ms-auto">
-                <li className="nav-item">
-                    <Link className="nav-link" to="/profile">Profile</Link>
-                </li>
-                <li className="nav-item">
-                    <Link className="nav-link" to="/card">Card</Link>
-                </li>
-                <li className="nav-item">
-                    <Link className="nav-link" to="/contact">Contact</Link>
-                </li>
-            </ul>
-        </div>
-    </div>
-</nav>
+      </div>
+    ))}
+  </div>
 
-
-    {/* Main Content */}
-    <div>
-        <h1 className="mb-4 text-center">MiniStore</h1>
-        
-         <input 
-         type="text" 
-         placeholder="Search"
-         className="form-control form-control-lg mb-3"
-         value={searching}
-         onChange={(s)=>setsearching(s.target.value)}
-         />   
-         {loading && <p className="text-center">Loading content ...</p>}
-        <div className="row">
-            {filtredproducts.map((pro, index) => (
-                <div key={index} className="col-md-4 mb-4">
-                    <div className="card h-100">
-                        <img src={pro.images[0]} className="card-img-top" alt={pro.title} />
-                        <div className="card-body text-center">
-                            <h5 className="card-title">{pro.title}</h5>
-                            <p className="card-text">${pro.price}</p>
-                            <button className="btn btn-secondary">Add to card</button>
-                        </div>
-                    </div>
-                </div>
-            ))}
-        </div>
-    </div>
-    {/* Footer */}
-    <footer className="bg-secondary text-white py-4 mt-5">
-    <div className="container text-center">
-        <p className="mb-1">&copy; {new Date().getFullYear()} MiniStore. All rights reserved.</p>
-        <p className="mb-1">Your one-stop shop for the coolest products!</p>
-    </div>
-</footer>
+  {/* Footer */}
+  <footer id="footer">
+    <p>&copy; {new Date().getFullYear()} MiniStore. All rights reserved.</p>
+    <p>Your one-stop shop for the coolest products!</p>
+  </footer>
 </div>
-
     );
 }
