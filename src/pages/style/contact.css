@@ -1,0 +1,70 @@
+#contact-container {
+  max-width: 500px;
+  margin: 40px auto;
+  font-family: Arial, sans-serif;
+}
+
+#contact-title {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+#contact-form {
+  display: flex;
+  flex-direction: column;
+}
+
+#form-group {
+  margin-bottom: 15px;
+}
+
+#form-label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+#form-input,
+#form-textarea {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #ccc;
+}
+
+#form-textarea {
+  resize: vertical;
+}
+
+/* Buttons */
+#submit-btn,
+#back-btn {
+  padding: 10px;
+  margin-top: 10px;
+  cursor: pointer;
+  border: none;
+}
+
+#submit-btn {
+  background-color: #3498db;
+  color: white;
+}
+
+#submit-btn:hover {
+  background-color: #2980b9;
+}
+
+#back-btn {
+  background-color: #7f8c8d;
+  color: white;
+}
+
+#back-btn:hover {
+  background-color: #636e72;
+}
+
+/* Submitted messages */
+#submitted-item {
+  margin-top: 20px;
+  padding: 10px;
+  border: 1px solid #ddd;
+}

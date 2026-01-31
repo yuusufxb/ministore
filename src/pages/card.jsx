@@ -1,7 +1,9 @@
+import { useNavigate } from 'react-router-dom';
 import './style/card.css';
 
 export function Card({ cart, setcard }) {
 
+  const nav = useNavigate();
   const deleteCartProduct = (index) => {
     setcard(prev => prev.filter((_, i) => i !== index));
   };
@@ -22,6 +24,7 @@ export function Card({ cart, setcard }) {
           </button>
         </div>
       ))}
+      <button id='return-btn' onClick={()=>nav("/home")}>return home </button>
     </div>
   );
 }
