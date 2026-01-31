@@ -1,5 +1,54 @@
-#images {
-    display: block;
-    height: 230px;
-    width: 230px;
+#card-container {
+  padding: 20px;
+  font-family: Arial, sans-serif;
+}
+
+#card-title {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+#empty-cart {
+  text-align: center;
+  color: gray;
+}
+
+/* Cart item */
+#card-item {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  border: 1px solid #ccc;
+  padding: 10px;
+  margin-bottom: 10px;
+}
+
+/* Image */
+#card-image {
+  width: 80px;
+  height: 80px;
+  object-fit: cover;
+}
+
+/* Text */
+#card-name {
+  flex: 1;
+  font-weight: bold;
+}
+
+#card-price {
+  color: green;
+}
+
+/* Button */
+#remove-btn {
+  padding: 6px 10px;
+  cursor: pointer;
+  border: none;
+  background-color: #e74c3c;
+  color: white;
+}
+
+#remove-btn:hover {
+  background-color: #c0392b;
 }
