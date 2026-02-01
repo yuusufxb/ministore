@@ -21,12 +21,11 @@ export function Home({cart,setcard}){
     },[])
     const addtocart = (product) => {
     setcard(prev => {
-      const cartArray = Array.isArray(prev) ? prev : [];
 
-      const found = cartArray.find(item => item.id === product.id);
+      const found = prev.find(item => item.id === product.id);
 
       if (found) {
-        return cartArray.map(item =>
+        return prev.map(item =>
           item.id === product.id
             ? { ...item, quantity: item.quantity + 1 }
             : item
@@ -34,7 +33,7 @@ export function Home({cart,setcard}){
       }
 
       return [
-        ...cartArray,
+        ...prev,
         {
           id: product.id,
           title: product.title,
