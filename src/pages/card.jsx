@@ -35,24 +35,37 @@ const reduceQuantity = (pro) => {
   
   return (
     <div id="card-container">
-      <h1 id="card-title">Your Cart</h1>
-      { cart.length === 0 && <p id="empty-cart">Cart is empty</p>}
+  <h1 id="card-title">Your Cart</h1>
 
-      {cart.map((ca, index) => (
-        <div>
-        <div id="card-item" key={index}>
-          <img src={ca.image} alt="product" id="card-image" />
-          <p id="card-name">{ca.title}</p>
-          <p id="card-price">${ca.price}</p>
-          
-          <button id="remove-btn" onClick={() => deleteCartProduct(index)}>
-            Remove from cart
-          </button>
+  {cart.length === 0 && <p id="empty-cart">Cart is empty</p>}
+
+  {cart.map((ca, index) => (
+    <div id="card-item" key={index}>
+
+      <img src={ca.image} alt="product" id="card-image" />
+
+      <div id="card-info">
+        <p id="card-name">{ca.title}</p>
+        <p id="card-price">${ca.price}</p>
+
+        <div id="quantity-box">
+          <button onClick={() => reduceQuantity(ca)}>-</button>
+          <span>{ca.quantity}</span>
+          <button onClick={() => addQuantity(ca)}>+</button>
         </div>
-        <p>quantity :{ca.quantity} <button onClick={()=>addQuantity(ca) }>+</button> <button onClick={()=>reduceQuantity(ca)}>-</button></p>
-        </div>
-      ))}
-      <button id='return-btn' onClick={()=>nav("/home")}>return home </button>
+      </div>
+
+      <button id="remove-btn" onClick={() => deleteCartProduct(index)}>
+        ✕
+      </button>
+
     </div>
+  ))}
+
+  <button id="return-btn" onClick={() => nav("/home")}>
+    Return Home
+  </button>
+</div>
+
   );
 }

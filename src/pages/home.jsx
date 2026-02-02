@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { Card } from "./card";
-import './style/home.css';
+import './style/home.css'
 export function Home({cart,setcard}){
     {/*add to card function*/}
 
