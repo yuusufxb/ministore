@@ -4,10 +4,35 @@ import './style/card.css';
 export function Card({ cart, setcard }) {
 
   const nav = useNavigate();
+  /* delete a product from card */
   const deleteCartProduct = (index) => {
     setcard(prev => prev.filter((_, i) => i !== index));
   };
-console.log(cart)
+  /* add & reduce quantity */
+const addQuantity = (pro) => {
+  if (pro.quantity < 10) {
+    setcard(prev =>
+      prev.map(item =>
+        item.id === pro.id
+          ? { ...item, quantity: item.quantity + 1 }
+          : item
+      )
+    );
+  }
+};
+const reduceQuantity = (pro) => {
+  if (pro.quantity > 1) {
+    setcard(prev =>
+      prev.map(item =>
+        item.id === pro.id
+          ? { ...item, quantity: item.quantity - 1 }
+          : item
+      )
+    );
+  }
+};
+
+  
   return (
     <div id="card-container">
       <h1 id="card-title">Your Cart</h1>
@@ -24,7 +49,7 @@ console.log(cart)
             Remove from cart
           </button>
         </div>
-        <p>quantity :{ca.quantity}</p>
+        <p>quantity :{ca.quantity} <button onClick={()=>addQuantity(ca) }>+</button> <button onClick={()=>reduceQuantity(ca)}>-</button></p>
         </div>
       ))}
       <button id='return-btn' onClick={()=>nav("/home")}>return home </button>
