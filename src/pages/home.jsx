@@ -81,7 +81,8 @@ export function Home({cart,setcard}){
         <img src={pro.images[0]} alt={pro.title} id="prod-img" />
         <h3 id="prod-title">{pro.title}</h3>
         <p id="prod-price">${pro.price}</p>
-        <button id="add-btn" onClick={() => addtocart(pro)}>
+        <button id="add-btn" onClick={(e) => {e.stopPropagation();
+           addtocart(pro);}}>
           Add to cart
         </button>
       </div>
